@@ -3,26 +3,40 @@ import React, { useState } from 'react';
 
 function App() {
 
-  const [items, setItems] = useState([
+  const [tasks, setTasks] = useState([
     {name: 'Go to the shop', isCompleted: false},
     {name: 'Buy socks', isCompleted: false},
     {name: 'Get a cat', isCompleted: false},
   ]);
-  const [newItem, setNewTask] = useState("");
+  const [newtask, setNewTask] = useState("");
 
-  const itemNodes = items.map((item, index) => {
+  const taskNodes = tasks.map((task, index) => {
     return(
-      <li key = {index} className={item.isCompleted ? "completed" : "not-completed"}>
-        <span> {item.name} </span>
-        {item.isCompleted ? <span className='completed'> Completed! </span> :
+      <li key = {index} className={task.isCompleted ? "completed" : "not-completed"}>
+        <span> {task.name} </span>
+        {task.isCompleted ? <span className='completed'> Completed! </span> :
         <button onClick={() => completeTask(index)}> Complete</button>} </li>
     )
     });
     
-    const handleItemInput = (event) => {
+    const handleTaskInput = (event) => {
       setNewTask(event.target.value)
     }
 
+    const saveNewTask = (event) => {
+      event.preventDefault();
+      const copyTasks = [...tasks]
+      copyTasks.push({name:newtask, isCompleted : false})
+      setTasks(copyTasks)
+      setNewTask("");
+      
+    }
+
+    const completeTask = (index) => {
+      const copyTasks = [...tasks]
+      copyTasks[index].isCompleted = true;
+      setTasks(copyTasks)
+    }
   
   return (
     <div className="App">
@@ -31,10 +45,13 @@ function App() {
       <hr></hr>
 
       <ul>
-        {itemNodes}
+        {taskNodes}
       </ul>
 
       <form onSubmit={saveNewTask}>
+        <label htmlFor = 'new-task'> Add new task</label>
+        <input id='new-task' type='text' value={newtask} onChange={handleTaskInput}></input>
+        <input type='submit' value='Save New Task'/>
       
       </form>
 

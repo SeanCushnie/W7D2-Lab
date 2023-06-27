@@ -25,11 +25,11 @@ li button {
   padding: 10px;
   cursor: pointer;
 }
-li.purchased {
+li.completed {
   border: 2px solid #1a681e;
   color: #1a681e;
 }
-li.not-purchased {
+li.not-completed {
   border: 2px solid #f2360c;
 }
 input[type="text"] {
