@@ -15,6 +15,8 @@ function App() {
     return(
       <li key = {index} className={task.isCompleted ? "completed" : "not-completed"}>
         <span> {task.name} </span>
+        {task.priority === 'high' && <p>High Priority</p>}
+        {task.priority === 'low' && <p>Low Priority</p>}
         {task.isCompleted ? <span className='completed'> Completed! </span> :
         <button onClick={() => completeTask(index)}> Complete</button>} </li>
     )
