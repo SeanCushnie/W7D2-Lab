@@ -44,3 +44,11 @@ button, input[type="submit"]{
   cursor: pointer;
   border: 1px solid #000;
 }
+
+.highPriority {
+  border: 5px solid gold
+}
+
+.lowPriority {
+  border: 5px solid silver
+}
